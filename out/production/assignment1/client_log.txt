@@ -1,0 +1,4 @@
+Clientul cu id 123 a retras suma de 100.0 RON
+Clientul cu id 123 a retras suma de 100.0 RON
+Clientul cu id 124 a retras suma de 100.0 RON
+
