@@ -32,6 +32,7 @@ public class ATM {
         choices.add("Retragere ");
         choices.add("Depunere ");
         choices.add("Exchange ");
+        choices.add("Schimbare pin" );
 
         List<String> choicesGuest = new ArrayList<>();
         choicesGuest.add("Retragere ");
@@ -41,61 +42,99 @@ public class ATM {
 
         int choice = 0;
         boolean guest = false;
+        boolean running = true;
+        getCurrentClient();
 
-       getCurrentClient();
-
-       if(!bank.getClientList().contains(client) && client.isActive())
-       {
-           guest = true;
+        while(running == true) {
 
 
-           try{ while(choice !=4) {
-               choice = getOptionsGuest();
-               System.out.println("Ati ales " + choicesGuest.get(choice));
+            if (!bank.getClientList().contains(client) && client.isActive()) {
+                guest = true;
 
-               if (choice == 0) {
-                   retragereSoldGuest();
-               }
-               else{
-                   if(choice == 1) exchange();
-               }
 
-           }} catch (IndexOutOfBoundsException e) {
-               System.out.println("Multumim!");
-           }
+                try {
+                    while (choice != 4) {
+                        choice = getOptionsGuest();
+                        System.out.println("Ati ales " + choicesGuest.get(choice));
 
-       }
-       else {
+                        if (choice == 0) {
+                            retragereSoldGuest();
+                        } else {
+                            if (choice == 1) exchange();
+                        }
 
-           if (client.getUniCod().equals("ADMIN") || client.getUniCod().equals("admin")) {
-               getAdminConsole();
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Multumim!");
+                }
 
-           } else {
-               try {
-                   while (choice != 4 && client.isActive()) {
-                       choice = getOptionsStart();
-                       System.out.println("Ati ales " + choices.get(choice));
+            } else {
 
-                       if (choice == 0) {
-                           interogareSold();
+                if (client.getUniCod().equals("ADMIN") || client.getUniCod().equals("admin")) {
+                    getAdminConsole();
 
-                       } else if (choice == 1) {
-                           retragereSold();
-                       } else if (choice == 2) {
-                           depunereSold();
-                       } else {
-                           exchange();
-                       }
+                } else {
+                    try {
+                        while (choice != 5 && client.isActive()) {
+                            choice = getOptionsStart();
+                            System.out.println("Ati ales " + choices.get(choice));
 
-                   }
-               } catch (IndexOutOfBoundsException e) {
-                   System.out.println("Multumim!");
-               }
-           }
-       }
+                            if (choice == 0) {
+                                interogareSold();
+
+                            } else if (choice == 1) {
+                                retragereSold();
+                            } else if (choice == 2) {
+                                depunereSold();
+                            } else if (choice == 3) {
+                                exchange();
+                            } else {
+                                schimbarePin();
+                            }
+
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Multumim!");
+
+                    }
+                    finally {
+                        run();
+                    }
+                }
+            }
+        }
 
 
     }
+
+    private void schimbarePin() {
+        System.out.println("Esti sigur ca doresti sa schimbi PIN-ul?");
+        System.out.println("1.Da   2.Nu");
+        Scanner scanner = new Scanner(System.in);
+
+        int agree = scanner.nextInt();
+        boolean flag = false;
+
+        while(flag == false) {
+            if (agree == 1) {
+                System.out.println("Insereaza pin vechi:");
+                String parolaVeche = scanner.nextLine();
+                if(this.client.getPin().equals(parolaVeche)){
+                    System.out.println("Insereaza parola noua:");
+                    String parolaNoua = scanner.nextLine();
+                    this.client.setPin(parolaNoua);
+                    flag = true;
+                    System.out.println("Parola a fost schimbata");
+                    }
+                }
+            else {
+                flag = true;
+
+            }
+            }
+        }
+
+
 
     private void getAdminConsole() throws IOException {
 
@@ -560,7 +599,7 @@ public class ATM {
     }
 
     private void interogareSold() {
-        System.out.println("Dispuneti de " + client.getAmountOfMoney() + " in contul dumneavoastra");
+        System.out.println("Dispuneti de " + client.getAmountOfMoney() + "RON in contul dumneavoastra");
 
     }
 
@@ -568,7 +607,8 @@ public class ATM {
         System.out.print("0.Interogare sold        ");
         System.out.println("1.Retragere");
         System.out.print("2.Depunere               ");
-        System.out.println("3.Exchange");
+        System.out.print("3.Exchange       ");
+        System.out.println("4.Schimbare PIN");
         System.out.print(">");
 
         Scanner scanner = new Scanner(System.in);

@@ -32,7 +32,7 @@ public class App {
                 String[] row = line.split(",");
 
                 Client c = new Client(row[0],row[1],parseDouble(row[2]));
-                if(row[1].charAt(0) == '1' || row[0].charAt(0) == 'A' || row[0].charAt(0)=='a'){
+                if(row[1].charAt(0) == '1' || row[0].charAt(0) == 'A' || row[0].charAt(0)=='a' || row[0].charAt(0) == 'M'){
                     bank.addClient(c);
                 }
                 App.clientList.add(c);
@@ -84,6 +84,8 @@ public class App {
         }
         //System.out.println(cursValutar[1][2]);
         bank.getClientList().get(2).setActive(false);
+        bank.getClientList().get(3).setActive(false);
+        bank.getClientList().get(4).setActive(false);
         atm.run();
 
 
