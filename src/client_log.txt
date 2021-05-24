@@ -7,3 +7,10 @@ Clientul cu id 123 a depus suma de 100 RON
 Clientul cu id 123 a depus suma de 200 USD echivalentul a 816.0RON
 Clientul cu id 123 a schimbat suma de 100.0EURO in 492.0RON
 Clientul cu id 123 a retras suma de 200.0 USD
+Clientul cu id 123 a retras suma de 200.0 USD
+Clientul cu id 123 a depus suma de 100 USD echivalentul a 408.0RON
+Clientul cu id 123 a schimbat suma de 100.0USD in 83.0EURO
+Clientul cu id 123 a retras suma de 200.0 USD
+Clientul cu id 123 a depus suma de 200 USD echivalentul a 816.0RON
+Clientul cu id 123 a schimbat suma de 200.0USD in 166.0EURO
+Clientul cu id 124 a schimbat suma de 490.0RON in 117.6USD

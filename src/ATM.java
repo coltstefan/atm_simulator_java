@@ -12,7 +12,7 @@ import static java.lang.Double.parseDouble;
 public class ATM {
 
     private Bank bank;
-    private double amountRon = 9000;
+    private double amountRon = 100000;
     private double amountDollars = 10000;
     private double amountEuro = 10000;
     private Client client;
@@ -53,7 +53,7 @@ public class ATM {
 
 
                 try {
-                    while (choice != 4) {
+                    while (choice != 5) {
                         choice = getOptionsGuest();
                         System.out.println("Ati ales " + choicesGuest.get(choice));
 
@@ -66,6 +66,9 @@ public class ATM {
                     }
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Multumim!");
+                }
+                finally {
+                    run();
                 }
 
             } else {
@@ -170,6 +173,7 @@ public class ATM {
             command = scanner.nextLine();
 
         }
+        run();
     }
 
 
